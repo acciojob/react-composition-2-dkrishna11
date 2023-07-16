@@ -1,19 +1,25 @@
 
 import React, {useState} from "react";
 import './../styles/App.css';
+import Modal from './Modal';
 
 const App = () => {
-  let [prop, setProb]=useState(true)
+  let [prop, setProb]=useState(false)
+
+  function handleCloseModal() {
+    setProb(false);
+  }
+
   return (
-    <div>
-        <button className="model-overlay" onClick={()=>setProb(true)}>Show Model</button>
-        <div className="model-close" onClick={()=>setProb(false)}>
-          {prop && <div>
-              <button>Close</button>
-              <p>This is the Content of the modal</p>
-            </div>}
-        </div>
-    </div>
+    <div id="main">
+       <button onClick={()=>setProb(true)}>Open Modal</button>
+       <Modal show={prop} onClose={handleCloseModal}>
+          <div className="modal">
+            <h2>Modal Content</h2>
+            <p>This is the content of the modal.</p>
+          </div>
+       </Modal>
+       </div>
   )
 }
 
